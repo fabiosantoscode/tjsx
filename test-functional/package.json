@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "mocha --compilers js:babel-core/register ."
+  },
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "mocha": "^3.4.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}

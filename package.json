@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "npm run test:unit --silent && npm run test:functional --silent",
+    "test:unit": "mocha",
+    "test:functional": "cd test-functional && npm i && npm start --silent"
   },
   "repository": {
     "type": "git",
