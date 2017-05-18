@@ -65,6 +65,11 @@ describe('rel', () => {
       </div>
     `, [ 'div', { }, 'foo' ])
   })
+  it('basic validations', () => {
+    ok.throws(() => { rel`foo` })
+    ok.throws(() => { rel`` })
+    ok.throws(() => { rel` <div /> <div /> ` })
+  })
   it('(actual examples)', () => {
     const lel = 'sloog'
     ok.deepEqual(rel`<div className="foo">
