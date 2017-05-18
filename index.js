@@ -10,16 +10,22 @@ var options = {
   createElement: React.createElement,
 }
 
-function rel (source, ...interpolated) {
+function parseHTML (source) {
   var handler = new htmlparser2.DomHandler()
   var parser = new htmlparser2.Parser(handler, { lowerCaseTags: false, lowerCaseAttributeNames: false })
-  var sourceString = source.join(options.guid)
-  interpolated.reverse()  // we're popping from the end
-  parser.write(sourceString)
+  parser.write(source)
   parser.done()
-  var dom = handler.dom
   trimWhitespace(handler.dom)
-  assert.equal(dom.length, 1, 'rel: like with JSX, you can only create a single element. Try returning an array of rel`...` calls instead!')
+  assert.equal(handler.dom.length, 1,
+    'rel: like with JSX, you can only create a single element. Try returning an array of rel`...` strings instead!')
+  return handler.dom
+}
+
+function rel (source, ...interpolated) {
+  var dom = parseHTML(source.join(options.guid))
+  if (interpolated.length > 1) {
+    interpolated.reverse()  // we're popping from the end for added perf
+  }
   return nodeToCreateElement(dom[0], interpolated)
 }
 
