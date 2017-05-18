@@ -107,10 +107,6 @@ function trimWhitespace(tree) {
   }
 }
 
-function notWhitespace(node) {
-  return node.type !== 'text' || node.data.trim() !== ''
-}
-
 // for testing only
 rel._configure = (_options) => {
   for (var k in _options) if (hop.call(_options, k)) {
