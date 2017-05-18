@@ -84,9 +84,4 @@ describe('rel', () => {
       ]
     ])
   })
-  it('crashes with invalid stuff', () => {
-    const bar = 6, baz = 8
-    console.log(rel`<div foo="${bar} ${baz}"></div>`)
-    assert.throws(() => rel`<div foo="${bar} ${baz}"></div>`)
-  })
 })
