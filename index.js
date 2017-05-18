@@ -18,15 +18,15 @@ function parseHTML (source) {
   trimWhitespace(handler.dom)
   assert.equal(handler.dom.length, 1,
     'rel: like with JSX, you can only create a single element. Try returning an array of rel`...` strings instead!')
-  return handler.dom
+  return handler.dom[0]
 }
 
 function rel (source, ...interpolated) {
-  var dom = parseHTML(source.join(options.guid))
+  var rootNode = parseHTML(source.join(options.guid))
   if (interpolated.length > 1) {
     interpolated.reverse()  // we're popping from the end for added perf
   }
-  return nodeToCreateElement(dom[0], interpolated)
+  return createReactElements(rootNode, interpolated)
 }
 
 function children(ary) {
@@ -59,7 +59,7 @@ function interpolateString(string, interpolated, arrayMode) {
   throw new Error('interpolateString: unknown arrayMode ' + arrayMode)
 }
 
-function nodeToCreateElement(node, interpolated) {
+function createReactElements(node, interpolated) {
   if (node.type === 'text') {
     return cleanWhitespace(interpolateString(node.data, interpolated, 'children'))
   }
@@ -72,7 +72,7 @@ function nodeToCreateElement(node, interpolated) {
     node.attribs[k] = interpolateString(node.attribs[k], interpolated, 'none')
   }
   var children = node.children
-    ? node.children.map(node => nodeToCreateElement(node, interpolated)).filter(c => c != null)
+    ? node.children.map(node => createReactElements(node, interpolated)).filter(c => c != null)
     : undefined
   if (children && children.length === 1 && children[0] === undefined) {
     return options.createElement(tag, props)
