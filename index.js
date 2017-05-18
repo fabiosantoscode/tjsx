@@ -12,7 +12,7 @@ var options = {
 
 function parseHTML (source) {
   var handler = new htmlparser2.DomHandler()
-  var parser = new htmlparser2.Parser(handler, { lowerCaseTags: false, lowerCaseAttributeNames: false })
+  var parser = new htmlparser2.Parser(handler, { lowerCaseTags: false, lowerCaseAttributeNames: false, xmlMode: true })
   parser.write(source)
   parser.done()
   trimWhitespace(handler.dom)
