@@ -2,11 +2,12 @@
 
 var ok = require('assert')
 var rel = require('..')
+var options = require('../lib/options')
 
 describe('rel', () => {
   before(() => {
     // instrument rel for tests
-    rel._configure({
+    options._configure({
       createElement: (...args) => args,
       guid: 'rel-guid',  // just for console.logs in the middle of the code to not get confusing
     })
