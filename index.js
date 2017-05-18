@@ -1,24 +1,12 @@
 'use strict';
 
-var assert = require('assert')
-var htmlparser2 = require('htmlparser2')
 var React = require('react')
+var parseHTML = require('./lib/parse')
 var hop = ({}).hasOwnProperty
 
 var options = {
   guid: 'rel-' + Math.random().toString(16).split('.')[1] + '',
   createElement: React.createElement,
-}
-
-function parseHTML (source) {
-  var handler = new htmlparser2.DomHandler()
-  var parser = new htmlparser2.Parser(handler, { lowerCaseTags: false, lowerCaseAttributeNames: false, xmlMode: true })
-  parser.write(source)
-  parser.done()
-  trimWhitespace(handler.dom)
-  assert.equal(handler.dom.length, 1,
-    'rel: like with JSX, you can only create a single element. Try returning an array of rel`...` strings instead!')
-  return handler.dom[0]
 }
 
 // This function is meant to be used as an ES6 string template tag
@@ -77,12 +65,22 @@ function createReactElements(node, interpolated) {
   }
   var tag = node.name
   var props = node.attribs
+
   for (var k in node.attribs) if (hop.call(node.attribs, k)) {
     node.attribs[k] = interpolateString(node.attribs[k], interpolated, 'none')
   }
-  var children = node.children
-    ? node.children.map(node => createReactElements(node, interpolated)).filter(c => c != null)
-    : undefined
+
+  if (node.children) {
+    var children = node.children
+      .map(node => createReactElements(node, interpolated))
+      .filter(c => c != null)
+    return createAnElement(tag, props, children)
+  }
+
+  return createAnElement(tag, props)
+}
+
+function createAnElement (tag, props, children) {
   if (children && children.length === 1 && children[0] === undefined) {
     return options.createElement(tag, props)
   }
@@ -105,15 +103,6 @@ function cleanWhitespace(str) {
 function stripDecorativeWhitespace(str) {
   str = str.filter(item => !(item.trim() == '' && item.indexOf('\n') != -1))
   return children(str)
-}
-
-function trimWhitespace(tree) {
-  for (var i = 0; i < tree.length; i++) {
-    if (tree[i].type === 'text' && tree[i].data.trim() === '') {
-      tree.splice(i, 1)
-      i--
-    }
-  }
 }
 
 // for testing only
