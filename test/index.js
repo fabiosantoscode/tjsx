@@ -33,9 +33,7 @@ describe('rel', () => {
     ok.deepEqual(rel`<div>${'thing'} is ${'great'}</div>`, [
       'div',
       { },
-      'thing',
-      ' is ',
-      'great'
+      'thing', ' is ', 'great'
     ])
     ok.deepEqual(rel`<div> ${'thing'} is ${'great'} </div>`, [
       'div',
