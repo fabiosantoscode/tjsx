@@ -19,8 +19,8 @@ function rel (source, ...interpolated) {
   parser.done()
   var dom = handler.dom
   trimWhitespace(handler.dom)
-  assert.equal(dom.length, 1, 'rel: like with JSX, you can only create a single element. Try returning an array of rel`...` calls instead!');
-  return dom.map(domNode => nodeToCreateElement(domNode, interpolated))[0]
+  assert.equal(dom.length, 1, 'rel: like with JSX, you can only create a single element. Try returning an array of rel`...` calls instead!')
+  return nodeToCreateElement(dom[0], interpolated)
 }
 
 function children(ary) {
