@@ -9,7 +9,7 @@ describe('components', () => {
     // instrument rel for tests
     options._configure({
       createElement: (...args) => args,
-      guid: 'rel-guid',  // just for console.logs in the middle of the code to not get confusing
+      guid: 'rel-guid'  // just for console.logs in the middle of the code to not get confusing
     })
   })
   function SomeComponent (props) {
@@ -33,7 +33,7 @@ describe('components', () => {
         </>
       `,
       [
-        SomeComponent, { porp: "1234" },
+        SomeComponent, { porp: '1234' },
         [
           AnotherComponent, { anotherPorp: fn },
           'child'
@@ -42,4 +42,3 @@ describe('components', () => {
     )
   })
 })
-

@@ -33,7 +33,7 @@ describe('functional tests', () => {
           </>
         </>
       `,
-      <SomeComponent porp="1234">
+      <SomeComponent porp='1234'>
         <AnotherComponent anotherPorp={fn}>
           <span>child</span>
         </AnotherComponent>

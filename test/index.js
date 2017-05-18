@@ -9,7 +9,7 @@ describe('rel', () => {
     // instrument rel for tests
     options._configure({
       createElement: (...args) => args,
-      guid: 'rel-guid',  // just for console.logs in the middle of the code to not get confusing
+      guid: 'rel-guid'  // just for console.logs in the middle of the code to not get confusing
     })
   })
   it('returns a createElement structure', () => {
@@ -38,17 +38,17 @@ describe('rel', () => {
     ok.deepEqual(rel`<div> ${'thing'} is ${'great'} </div>`, [
       'div',
       { },
-      ' ', 'thing', ' is ', 'great', ' ',
+      ' ', 'thing', ' is ', 'great', ' '
     ])
     ok.deepEqual(rel`<div> ${'thing'} is </div>`, [
       'div',
       { },
-      ' ', 'thing', ' is ',
+      ' ', 'thing', ' is '
     ])
     ok.deepEqual(rel`<div> is ${'thing'} </div>`, [
       'div',
       { },
-      ' is ', 'thing', ' ',
+      ' is ', 'thing', ' '
     ])
   })
   it('removes extraneous whitespace when it contains a \\n', () => {
@@ -72,7 +72,7 @@ describe('rel', () => {
     const lel = 'sloog'
     ok.deepEqual(rel`<div className="foo">
       <div className="bar baz">
-        <img className="baz-avatar" src=${`/foo/${ lel }/baz-avatar`} />
+        <img className="baz-avatar" src=${`/foo/${lel}/baz-avatar`} />
       </div>
       <div className="bar content">
         <h3 className="title">${'title'}</h3>
@@ -88,14 +88,14 @@ describe('rel', () => {
       [
         'div',
         { className: 'bar baz' },
-        [ 'img', { className: 'baz-avatar', src: '/foo/sloog/baz-avatar' } ],
+        [ 'img', { className: 'baz-avatar', src: '/foo/sloog/baz-avatar' } ]
       ],
       [
         'div',
         { className: 'bar content' },
         [ 'h3', { className: 'title' }, 'title' ],
         [ 'span', { className: 'date' }, 'datePublishedString' ],
-        [ 'div', { className: 'cta-wrapper' }, 'source' ],
+        [ 'div', { className: 'cta-wrapper' }, 'source' ]
       ]
     ])
   })
