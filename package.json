@@ -25,9 +25,11 @@
     "mocha": "^3.1.2"
   },
   "dependencies": {
-    "htmlparser2": "^3.9.2"
+    "htmlparser2": "3.9.2"
   },
   "iWouldNeverSpecifyThisAsADependencyOfAnyKindBecauseICareAboutYouAndThinkDependencyHellIsRetarded": {
-    "react": "Like I said, never."
+    "react": "Like I said, never.",
+    "react-dom": "nah",
+    "babel-core": "nope!"
   }
 }
