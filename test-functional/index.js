@@ -5,7 +5,6 @@ var tjsx = require('..')
 var options = require('../lib/options')
 var React = require('react')
 var ReactDOMServer = require('react-dom/server')
-var babel = require('babel-core')
 
 describe('functional tests', () => {
   before(() => {

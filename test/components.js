@@ -8,7 +8,7 @@ describe('components', () => {
   before(() => {
     // instrument tjsx for tests
     options._configure({
-      createElement: (...args) => args,
+      createElement: function () { return [].slice.call(arguments) },
       guid: 'tjsx-guid'  // just for console.logs in the middle of the code to not get confusing
     })
   })
