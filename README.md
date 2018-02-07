@@ -1,5 +1,7 @@
 # tjsx
 
+[![Build Status](https://travis-ci.org/fabiosantoscode/tjsx.svg?branch=master)](https://travis-ci.org/fabiosantoscode/tjsx)
+
 Use React without a transpiler!
 
 ## Features
