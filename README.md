@@ -1,4 +1,4 @@
-# rel
+# tjsx
 
 Use React without a transpiler!
 
@@ -13,22 +13,22 @@ Use React without a transpiler!
 ## Example
 
 ```javascript
-const rel = require('rel')
+const tjsx = require('tjsx')
 
 // Look ma, no transpilers!
 function YourComponent({ kind }) {
   const className = `foo foo__${kind}`
-  return rel`<div className=${className} onClick=${(e) => this.onClick(e)} />`
+  return tjsx`<div className=${className} onClick=${(e) => this.onClick(e)} />`
 }
 ```
 
 ## Interpolating strings
 
 ```javascript
-const rel = require('rel')
+const tjsx = require('tjsx')
 
 function AmazingTitle({ name = 'Fábio' }) {
-  return rel`
+  return tjsx`
     <h1>Hello, ${name}</h1>
   `
 }
@@ -37,15 +37,15 @@ function AmazingTitle({ name = 'Fábio' }) {
 ## Use it with your other components
 
 ```javascript
-const rel = require('rel')
+const tjsx = require('tjsx')
 const OneComponent = require('react-some-component')
 
 function AnotherComponent() {
-  return rel`<div>foo!</div>`
+  return tjsx`<div>foo!</div>`
 }
 
 function ComponentUsingExternalComponent(props) {
-  return rel`
+  return tjsx`
     <div>
       <${OneComponent} prop1="foo">
         ${props.children}

@@ -1,76 +1,76 @@
 'use strict'
 
 var ok = require('assert')
-var rel = require('..')
+var tjsx = require('..')
 var options = require('../lib/options')
 
-describe('rel', () => {
+describe('tjsx', () => {
   before(() => {
-    // instrument rel for tests
+    // instrument tjsx for tests
     options._configure({
       createElement: (...args) => args,
-      guid: 'rel-guid'  // just for console.logs in the middle of the code to not get confusing
+      guid: 'tjsx-guid'  // just for console.logs in the middle of the code to not get confusing
     })
   })
   it('returns a createElement structure', () => {
-    ok.deepEqual(rel`
+    ok.deepEqual(tjsx`
       <div id="foo" />
     `, [ 'div', { id: 'foo' } ])
   })
   it('this structure can interpolate things', () => {
-    ok.deepEqual(rel`<div>${'thing'}</div>`, [ 'div', { }, 'thing' ])
+    ok.deepEqual(tjsx`<div>${'thing'}</div>`, [ 'div', { }, 'thing' ])
     var fn = () => null
-    ok.deepEqual(rel`<div>${fn}</div>`, [ 'div', { }, fn ])
+    ok.deepEqual(tjsx`<div>${fn}</div>`, [ 'div', { }, fn ])
   })
   it('can interpolate attributes', () => {
     var fn = () => null
     ok.deepEqual(
-      rel`<div onClick=${fn} />`,
+      tjsx`<div onClick=${fn} />`,
       [ 'div', { onClick: fn } ]
     )
   })
   it('can interpolate parts of strings', () => {
-    ok.deepEqual(rel`<div>${'thing'} is ${'great'}</div>`, [
+    ok.deepEqual(tjsx`<div>${'thing'} is ${'great'}</div>`, [
       'div',
       { },
       'thing', ' is ', 'great'
     ])
-    ok.deepEqual(rel`<div> ${'thing'} is ${'great'} </div>`, [
+    ok.deepEqual(tjsx`<div> ${'thing'} is ${'great'} </div>`, [
       'div',
       { },
       ' ', 'thing', ' is ', 'great', ' '
     ])
-    ok.deepEqual(rel`<div> ${'thing'} is </div>`, [
+    ok.deepEqual(tjsx`<div> ${'thing'} is </div>`, [
       'div',
       { },
       ' ', 'thing', ' is '
     ])
-    ok.deepEqual(rel`<div> is ${'thing'} </div>`, [
+    ok.deepEqual(tjsx`<div> is ${'thing'} </div>`, [
       'div',
       { },
       ' is ', 'thing', ' '
     ])
   })
   it('removes extraneous whitespace when it contains a \\n', () => {
-    ok.deepEqual(rel`
+    ok.deepEqual(tjsx`
       <div>
         foo
       </div>
     `, [ 'div', { }, 'foo' ])
-    ok.deepEqual(rel`
+    ok.deepEqual(tjsx`
       <div>
         ${'foo'}
       </div>
     `, [ 'div', { }, 'foo' ])
   })
   it('basic validations', () => {
-    ok.throws(() => { rel`foo` })
-    ok.throws(() => { rel`` })
-    ok.throws(() => { rel` <div /> <div /> ` })
+    ok.throws(() => { tjsx`foo` })
+    ok.throws(() => { tjsx`` })
+    ok.throws(() => { tjsx` <div /> <div /> ` })
   })
   it('(actual examples)', () => {
     const lel = 'sloog'
-    ok.deepEqual(rel`<div className="foo">
+    ok.deepEqual(tjsx`<div className="foo">
       <div className="bar baz">
         <img className="baz-avatar" src=${`/foo/${lel}/baz-avatar`} />
       </div>

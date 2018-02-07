@@ -1,7 +1,7 @@
 'use strict'
 
 var ok = require('assert')
-var rel = require('..')
+var tjsx = require('..')
 var options = require('../lib/options')
 var React = require('react')
 var ReactDOMServer = require('react-dom/server')
@@ -14,10 +14,10 @@ describe('functional tests', () => {
     })
   })
   function SomeComponent (props) {
-    return rel`<div style=${{ fontSize: props.porp }}>foo!</div>`
+    return tjsx`<div style=${{ fontSize: props.porp }}>foo!</div>`
   }
   function AnotherComponent (props) {
-    return rel`
+    return tjsx`
       <div onClick=${props.anotherPorp}>
         ${props.children}
       </div>
@@ -26,7 +26,7 @@ describe('functional tests', () => {
   it('basic test', () => {
     var fn = () => null
     ok.deepEqual(
-      rel`
+      tjsx`
         <${SomeComponent} porp="1234">
           <${AnotherComponent} anotherPorp=${fn}>
             <span>child</span>
@@ -42,7 +42,7 @@ describe('functional tests', () => {
   })
   it('style', () => {
     ok.deepEqual(
-      rel`<div style=${{ height: 10 }} />`,
+      tjsx`<div style=${{ height: 10 }} />`,
       <div style={{ height: 10 }} />
     )
   })
