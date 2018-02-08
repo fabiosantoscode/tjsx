@@ -51,6 +51,20 @@ describe('tjsx', () => {
       ' is ', 'thing', ' '
     ])
   })
+  it('supports children arrays', () => {
+    const children = [
+      'foo',
+      'bar'
+    ]
+    ok.deepEqual(
+      tjsx`<div>${children}</div>`,
+      [
+        'div',
+        { },
+        children
+      ]
+    )
+  })
   it('removes extraneous whitespace when it contains a \\n', () => {
     ok.deepEqual(tjsx`
       <div>
