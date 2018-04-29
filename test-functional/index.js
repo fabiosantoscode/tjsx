@@ -4,7 +4,6 @@ var ok = require('assert')
 var tjsx = require('..')
 var options = require('../lib/options')
 var React = require('react')
-var ReactDOMServer = require('react-dom/server')
 
 describe('functional tests', () => {
   before(() => {
