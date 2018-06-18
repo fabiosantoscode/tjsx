@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - 4
-  - stable
-  - latest
+  - 8
+  - 10
 before_script:
-  - npm install react
+  - npm install react@16.4.1
