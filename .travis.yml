@@ -2,5 +2,6 @@ language: node_js
 node_js:
   - 4
   - stable
+  - latest
 before_script:
   - npm install react
