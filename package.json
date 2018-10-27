@@ -7,11 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm run test:unit --silent && npm run test:functional --silent",
-    "test:unit": "mocha",
+    "test": "istanbul cover ./node_modules/.bin/_mocha",
+    "test:unit": "istanbul cover ./node_modules/.bin/_mocha",
     "test:functional": "cd test-functional && npm i && npm start --silent",
-    "lint": "standard --fix",
-    "precommit": "standard --fix"
+    "lint": "eslint --fix 'lib/**/*.js'",
+    "precommit": "npm run lint --silent && npm run test --silent"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,14 @@
   },
   "homepage": "https://github.com/fabiosantoscode/tjsx#readme",
   "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "husky": "^0.14.3",
+    "istanbul": "^1.1.0-alpha.1",
     "mocha": "^5.2.0",
     "standard": "^10.0.2"
   },
@@ -42,5 +49,8 @@
       "it",
       "describe"
     ]
+  },
+  "eslintConfig": {
+    "extends": "standard"
   }
 }
