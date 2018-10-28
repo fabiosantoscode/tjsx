@@ -16,6 +16,9 @@
     "type": "git",
     "url": "git+https://github.com/fabiosantoscode/tjsx.git"
   },
+  "files": [
+    "lib"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
