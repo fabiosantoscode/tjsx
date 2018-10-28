@@ -10,8 +10,7 @@
     "test": "istanbul cover ./node_modules/.bin/_mocha",
     "test:unit": "istanbul cover ./node_modules/.bin/_mocha",
     "test:functional": "cd test-functional && npm i && npm start --silent",
-    "lint": "eslint --fix 'lib/**/*.js'",
-    "precommit": "npm run lint --silent && npm run test --silent"
+    "lint": "eslint --fix 'lib/**/*.js'"
   },
   "repository": {
     "type": "git",
@@ -30,10 +29,9 @@
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "husky": "^0.14.3",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^5.2.0",
-    "standard": "^10.0.2"
+    "pre-commit": "^1.2.2"
   },
   "dependencies": {
     "htmlparser2": "3.9.2"
@@ -43,14 +41,16 @@
     "react-dom": "nah",
     "babel-core": "nope!"
   },
-  "standard": {
+  "eslintConfig": {
+    "extends": "standard"
     "globals": [
       "before",
       "it",
       "describe"
     ]
   },
-  "eslintConfig": {
-    "extends": "standard"
-  }
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
