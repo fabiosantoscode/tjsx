@@ -42,12 +42,12 @@
     "babel-core": "nope!"
   },
   "eslintConfig": {
-    "extends": "standard"
-    "globals": [
-      "before",
-      "it",
-      "describe"
-    ]
+    "extends": "standard",
+    "globals": {
+      "before": false,
+      "it": false,
+      "describe": false
+    }
   },
   "pre-commit": [
     "lint",
